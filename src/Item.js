@@ -9,7 +9,6 @@ const Item = ({item, handleDelete, handleEdit}) => {
   const DisplayItem = () => {
     return(
       <ListGroup.Item
-      key={item.id}
       as="li"
       className="d-flex justify-content-between align-items-start"
       >
@@ -45,7 +44,6 @@ const Item = ({item, handleDelete, handleEdit}) => {
 
     return(
       <ListGroup.Item
-      key={item.id}
       as="li"
       >
       <Form className="d-flex align-items-center" onSubmit={handleSubmit}>

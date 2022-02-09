@@ -3,12 +3,12 @@ import ItemsContainer from './ItemsContainer';
 import AddItem from './AddItem';
 
 function App() {
-
   const [items, setItems] = useState([])
   
   const handleNewItem = ({title, description}) => {
-    const id = getNextId()
-    setItems([...items, {id:{id}, done:false, content:{title: title, description: title}}])
+    //Ideally id would come from backend, Im generating a random number for a new ID
+    let id = Math.floor(Math.random() * 1000);
+    setItems([...items, {id:id, done:false, content:{title: title, description: title}}])
   }
 
   const handleDelete = (id) => {
@@ -16,24 +16,18 @@ function App() {
   }
 
   const handleEdit = (id, changedFields) => {
-    console.log(changedFields)
     const newItems = items.map((item) => {
       if (item.id === id) {
         const updatedItem = {
           ...item,
           ...changedFields
         };
-        console.log(updatedItem)
-        return updatedItem;
+        return updatedItem
       }
-      return item;
+      return item
     });
 
     setItems(newItems);
-  }
-
-  const getNextId = () => {
-    Math.max(items.map(item => item.id || 0))
   }
   
   return (

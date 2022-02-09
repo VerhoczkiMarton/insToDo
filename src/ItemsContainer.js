@@ -10,7 +10,7 @@ const ItemsContainer = ({items, handleDelete, handleEdit}) => {
       <div className='items-conatiner'>
         <h2>Todo Items</h2>
         <ListGroup as="ol">
-          {items.map(item=> <Item {...{item, handleDelete, handleEdit}}/>)}
+          {items.map(item=> <Item key={item.id} {...{item, handleDelete, handleEdit}}/>)}
         </ListGroup>
       </div> 
     )

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button, Form } from "react-bootstrap"
 
 const AddToo = ({handleNewItem}) => {
-  const [newItem, setNewItem] = useState({})
+  const [newItem, setNewItem] = useState({title: '', description: ''})
 
   const handleSubmit = e => {
     e.preventDefault()
