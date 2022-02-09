@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import ItemsContainer from './ItemsContainer';
 import AddItem from './AddItem';
+import Search from './Search';
+import initialData from './initialData';
 
 function App() {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(initialData)
+  const [searchTerm, setSearchTerm] = useState('');
   
   const handleNewItem = ({title, description}) => {
     //Ideally id would come from backend, Im generating a random number for a new ID
     let id = Math.floor(Math.random() * 1000);
-    setItems([...items, {id:id, done:false, content:{title: title, description: title}}])
+    setItems([...items, {id:id, done:false, content:{title: title, description: description}}])
   }
 
   const handleDelete = (id) => {
@@ -33,7 +36,8 @@ function App() {
   return (
     <>
       <h1>InsToDo</h1>
-      <ItemsContainer {...{items, handleDelete, handleEdit}}/>
+      <Search onSearchTermChange={setSearchTerm}></Search>
+      <ItemsContainer {...{items, searchTerm, handleDelete, handleEdit}}/>
       <AddItem handleNewItem={handleNewItem}/>
     </>
   );

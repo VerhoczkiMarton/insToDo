@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap"
 import { ListGroup } from "react-bootstrap"
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { FaTrashAlt, FaRegEdit } from "react-icons/fa";
 
 const Item = ({item, handleDelete, handleEdit}) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -26,8 +27,12 @@ const Item = ({item, handleDelete, handleEdit}) => {
           <div className="fw-bold">{item.content.title}</div>
           {item.content.description}
         </div>
-        <Button disabled={item.done} className='item-button' variant='secondary' onClick={() => setIsEditing(true)}>edit</Button>
-        <Button className='item-button' variant='danger' onClick={() => handleDelete(item.id)}>delete</Button>
+        <Button disabled={item.done} className='item-button' variant='secondary' onClick={() => setIsEditing(true)}>
+          <FaRegEdit/>
+        </Button>
+        <Button className='item-button' variant='danger' onClick={() => handleDelete(item.id)}>
+          <FaTrashAlt/>
+        </Button>
       </ListGroup.Item>
     )
   }

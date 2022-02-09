@@ -2,7 +2,13 @@ import Item from "./Item"
 import { ListGroup } from "react-bootstrap"
 
 
-const ItemsContainer = ({items, handleDelete, handleEdit}) => {
+const ItemsContainer = ({items, searchTerm, handleDelete, handleEdit}) => {
+
+  const satisfiesSearch = (item) => {
+    const filter = searchTerm.toLowerCase()
+    return item.content.title.toLowerCase().includes(filter) || item.content.description.toLowerCase().includes(filter)
+  }
+
   return(
     items.length === 0 ? (
         <p>No items yet :(</p>
@@ -10,7 +16,12 @@ const ItemsContainer = ({items, handleDelete, handleEdit}) => {
       <div className='items-conatiner'>
         <h2>Todo Items</h2>
         <ListGroup as="ol">
-          {items.map(item=> <Item key={item.id} {...{item, handleDelete, handleEdit}}/>)}
+          {items.filter(item => {
+              return satisfiesSearch(item)})
+            .map(item => {
+              return <Item key={item.id} {...{item, handleDelete, handleEdit}}/>
+            }
+          )}
         </ListGroup>
       </div> 
     )
